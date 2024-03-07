@@ -1,0 +1,52 @@
+<div class="container">
+    <mat-toolbar>
+      <span class="spacer">Catálogo de servicios</span>
+    </mat-toolbar>
+    <mat-form-field class="filtro">
+      <mat-label>Filtro</mat-label>
+      <input  matInput (keyup)="filtrar($event)" #input>
+    </mat-form-field>
+  
+    <div class="contenedor_tabla mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" class=" tabla">
+        <ng-container matColumnDef="Nombre">
+          <th mat-header-cell *matHeaderCellDef>Nombre</th>
+          <td mat-cell *matCellDef="let element">{{ element.Nombre }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="UrlProduccion">
+          <th mat-header-cell *matHeaderCellDef>URL</th>
+          <td mat-cell *matCellDef="let element">{{ element.UrlProduccion }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="IpProduccion">
+          <th mat-header-cell *matHeaderCellDef>IP</th>
+          <td mat-cell *matCellDef="let element">{{ element.IpProduccion }}</td>
+        </ng-container>
+  
+        <ng-container matColumnDef="Dns">
+          <th mat-header-cell *matHeaderCellDef>DNS</th>
+          <td mat-cell *matCellDef="let element">{{ element.Dns }}</td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+    </div>
+    <div class="botones">
+      <span class="spacer"></span>
+      <button class="agregar_servidor" mat-mini-fab color="primary" >
+        <!-- <button class="agregar_servidor" mat-mini-fab color="primary" (click)="abrirVentanaAgregar()"></button> -->
+        <mat-icon
+          aria-hidden="false"
+          aria-label="Example home icon"
+          fontIcon="add"
+        ></mat-icon>
+      </button>
+    </div>
+  </div>
+  

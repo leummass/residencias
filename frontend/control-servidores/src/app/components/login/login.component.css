@@ -1,0 +1,36 @@
+.body{
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+    background-color: #F0F0F0;
+}
+
+.login{
+    width:100%;
+    max-width: 300px;
+    text-align: center;
+    background-color: #EAE8E8;
+    border-radius: 5%;
+    box-shadow: 0 50px 50px rgba(0, 0, 0, 0.1);
+}
+
+.width_input{
+    width: 80%;
+}
+
+.login h1{
+    font-size: 20px;
+}
+.button_login{
+    margin-bottom: 5%;
+    height: 35px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.spinner{
+    margin: 0 auto;
+}
