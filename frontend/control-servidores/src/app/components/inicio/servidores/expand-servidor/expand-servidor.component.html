@@ -1,0 +1,148 @@
+<div class="container">
+  <div class="">
+    <form
+      [formGroup]="actualizarServidorForm"
+      (ngSubmit)="actualizarServidor()"
+    >
+      <mat-grid-list cols="4" rowHeight="90px">
+        <mat-grid-tile [colspan]="4" [rowspan]="1">
+          <mat-form-field class="input_form" appearance="outline">
+            <mat-label>ID</mat-label>
+            <input
+              matInput
+              formControlName="Id"
+              type="text"
+              required
+              [readonly]="true"
+            />
+            <mat-error *ngIf="actualizarServidorForm.get('Id')?.errors">
+              {{ MensajeError("Id") }}
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field class="input_form" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="Nombre" type="text" required />
+            <mat-error *ngIf="actualizarServidorForm.get('Nombre')?.errors">
+              {{ MensajeError("Nombre") }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="input_form" appearance="outline">
+            <mat-label>Descripcion</mat-label>
+            <input
+              matInput
+              formControlName="Descripcion"
+              type="text"
+              required
+            />
+            <mat-error
+              *ngIf="actualizarServidorForm.get('Descripcion')?.errors"
+            >
+              {{ MensajeError("Descripcion") }}
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field class="input_form" appearance="outline">
+            <mat-label>Fecha de modificación</mat-label>
+            <input
+              matInput
+              formControlName="Fecha"
+              type="text"
+              [readonly]="true"
+            />
+            <mat-error *ngIf="actualizarServidorForm.get('Fecha')?.errors">
+              {{ MensajeError("Fecha") }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="input_form" appearance="outline">
+            <mat-label>NoColaborador</mat-label>
+            <input
+              matInput
+              formControlName="NoColaborador"
+              type="text"
+              required
+              [readonly]="true"
+            />
+            <mat-error
+              *ngIf="actualizarServidorForm.get('NoColaborador')?.errors"
+            >
+              {{ MensajeError("NoColaborador") }}
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile [colspan]="4" [rowspan]="1">
+          <mat-form-field appearance="outline">
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="Tipo">
+              <mat-option *ngFor="let servidor of tipo_serv" [value]="servidor.value">
+                {{ servidor.viewValue }}
+              </mat-option>
+            </mat-select>
+            <mat-error
+              *ngIf="actualizarServidorForm.get('Tipo')?.errors"
+            >
+              {{ MensajeError("Tipo") }}
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="4" [rowspan]="1">
+          <button
+            type="submit"
+            class="button_login"
+            [disabled]="actualizarServidorForm.invalid"
+            mat-raised-button
+            color="primary"
+          >
+            Actualizar
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
+  </div>
+</div>
+
+<mat-toolbar>
+  <span class="spacer">Detalles del servidor</span>
+</mat-toolbar>
+
+@if (Catalogo_detalles){
+ <mat-toolbar>
+  <span class="spacer">
+    <button
+    class="button_login"
+    mat-raised-button
+      color="primary"
+      (click)="ventanaAgregarDetalle()"
+            >
+      Agregar detalle
+    </button>
+  </span>
+</mat-toolbar>
+  @for(detalle of Catalogo_detalles; track detalle){
+    <app-expand-detalle-servidor [detalle]="detalle"></app-expand-detalle-servidor>
+  }
+}
+@else {
+  <mat-toolbar>
+    <span class="spacer">Este servidor aún no cuenta con detalles</span>
+  </mat-toolbar>
+  <mat-toolbar>
+    <span class="spacer">
+      <button
+      class="button_login"
+      mat-raised-button
+        color="primary"
+        (click)="ventanaAgregarDetalle()"
+              >
+        Agregar detalle
+      </button>
+    </span>
+  </mat-toolbar>
+}

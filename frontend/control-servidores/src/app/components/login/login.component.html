@@ -10,15 +10,15 @@
         <mat-form-field class="width_input" appearance="outline">
           <mat-label>Número de empleado</mat-label>
   
-          <input matInput formControlName="empleado" type="text" minlength="8" />
+          <input matInput formControlName="NoColaborador" type="text" minlength="8" />
   
-          <mat-error *ngIf="form.get('empleado')?.errors">{{ MensajeError() }}</mat-error>
+          <mat-error *ngIf="form.get('NoColaborador')?.errors">{{ MensajeError() }}</mat-error>
         </mat-form-field>
 
         <mat-form-field class="width_input" appearance="outline">
           <mat-label>Contraseña</mat-label>
   
-          <input matInput formControlName="password" type="password" minlength="8" />
+          <input matInput formControlName="Contrasena" type="password" minlength="8" />
   
           <!-- <mat-error *ngIf="form.get('empleado')?.errors">{{ MensajeError() }}</mat-error> -->
         </mat-form-field>

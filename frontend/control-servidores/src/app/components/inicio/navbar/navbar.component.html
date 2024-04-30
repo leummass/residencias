@@ -5,9 +5,16 @@
       </button>
       <span>Catálogo de servidores y servicios</span>
       <span class="spacer"></span>
-      <button mat-icon-button aria-label="botón cerrar sesión/logout">
+      {{usuario.NoColaborador}} - {{usuario.Tipo}}
+      <button mat-icon-button aria-label="editar usuario" [routerLink]="['editar-usuario']">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+
+      <button mat-icon-button aria-label="botón cerrar sesión/logout" (click)="logout()">
         <mat-icon>logout</mat-icon>
       </button>
+      
+      
     </mat-toolbar>
   
     <mat-sidenav-container>
@@ -16,9 +23,15 @@
           Catálogo de servidores
         </button>
         <mat-divider></mat-divider>
-        <button mat-button color="primary" [routerLink]="['servicios']">
+        <button mat-button color="primary" [routerLink]="['servicios']" >
           Catálogo de servicios
         </button>
+        @if(visible()){
+          <mat-divider></mat-divider>
+          <button mat-button color="primary" [routerLink]="['usuarios']" >
+            Listado de usuarios
+          </button>
+        }
       </mat-sidenav>
       <mat-sidenav-content>
         <div class="container">

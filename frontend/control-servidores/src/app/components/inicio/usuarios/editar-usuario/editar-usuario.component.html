@@ -1,0 +1,58 @@
+<div class="container">
+    <mat-toolbar>
+        <span class="spacer">Editar usuario</span>
+    </mat-toolbar>
+    <div class="form_anadir">
+      <form
+        [formGroup]="editarUsuarioForm"
+        (ngSubmit)="editarUsuario()"
+      >
+        <mat-grid-list cols="4" rowHeight="90px">
+  
+          <mat-grid-tile [colspan]="4" [rowspan]="1">
+              <mat-form-field class="input_form" appearance="outline">
+                <mat-label># Colaborador</mat-label>
+                <input matInput formControlName="NoColaborador" type="text" required [readonly]="true"/>
+                <mat-error *ngIf="editarUsuarioForm.get('NoColaborador')?.errors">
+                  {{ MensajeError("NoColaborador") }}
+                </mat-error>
+              </mat-form-field>
+
+  
+            <mat-form-field class="input_form" appearance="outline">
+              <mat-label>Contraseña</mat-label>
+              <input matInput formControlName="Contrasena" type="password" />
+              <mat-error *ngIf="editarUsuarioForm.get('Contrasena')?.errors">
+                {{ MensajeError("Contrasena") }}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="input_form" appearance="outline">
+                <mat-label>Tipo</mat-label>
+                <input matInput formControlName="Tipo" type="text" [readonly]="true"/>
+                <mat-error
+                  *ngIf="editarUsuarioForm.get('Tipo')?.errors"
+                >
+                  {{ MensajeError("Tipo") }}
+                </mat-error>
+              </mat-form-field>
+              
+          </mat-grid-tile>
+  
+  
+          <mat-grid-tile colspan="4" [rowspan]="1">
+            <button
+              type="submit"
+              class="button_login"
+              [disabled]="editarUsuarioForm.invalid"
+              mat-raised-button
+              color="primary"
+            >
+              Actualizar
+            </button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </form>
+    </div>
+  </div>
+  

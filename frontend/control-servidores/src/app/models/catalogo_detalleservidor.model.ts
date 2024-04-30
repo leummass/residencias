@@ -1,6 +1,6 @@
 export class Catalogo_DetalleServidor {
     constructor(
-        public ID: number,
+        public Id: number,
         public IdServidor: number,
         public IpDireccion: string,
         public Dns: string,

@@ -1,0 +1,184 @@
+<div class="container">
+    <mat-toolbar>
+        <span class="spacer">Agregar detalle de servidor</span>
+      </mat-toolbar>
+    <div class="form_anadir">
+      <form
+        [formGroup]="agregarDetalleForm"
+        (ngSubmit)="guardarDetalle()"
+      >
+        <mat-grid-list cols="4" rowHeight="90px">
+          <mat-grid-tile [colspan]="4" [rowspan]="1">
+
+
+            <mat-form-field class="input_form" appearance="outline">
+                <mat-label>ID de servidor</mat-label>
+                <input
+                  matInput
+                  formControlName="IdServidor"
+                  type="text"
+                  required
+                  [readonly]="true"
+                />
+                <mat-error *ngIf="agregarDetalleForm.get('IdServidor')?.errors">
+                  {{ MensajeError("IdServidor") }}
+                </mat-error>
+            </mat-form-field>
+
+          </mat-grid-tile>
+  
+          <mat-grid-tile [colspan]="2" [rowspan]="1">
+            <mat-form-field class="input_form" appearance="outline">
+              <mat-label>Dirección IP</mat-label>
+              <input matInput formControlName="IpDireccion" type="text" required />
+              <mat-error *ngIf="agregarDetalleForm.get('IpDireccion')?.errors">
+                {{ MensajeError("IpDireccion") }}
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field class="input_form" appearance="outline">
+              <mat-label>DNS</mat-label>
+              <input
+                matInput
+                formControlName="Dns"
+                type="text"
+                required
+              />
+              <mat-error
+                *ngIf="agregarDetalleForm.get('Dns')?.errors"
+              >
+                {{ MensajeError("Dns") }}
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          <mat-grid-tile [colspan]="2" [rowspan]="1">
+            <mat-form-field class="input_form" appearance="outline">
+              <mat-label>No. Versión</mat-label>
+              <input matInput formControlName="NoVersion" type="text" required />
+              <mat-error *ngIf="agregarDetalleForm.get('NoVersion')?.errors">
+                {{ MensajeError("NoVersion") }}
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field class="input_form" appearance="outline">
+              <mat-label>Hostname</mat-label>
+              <input
+                matInput
+                formControlName="Hostname"
+                type="text"
+                required
+              />
+              <mat-error
+                *ngIf="agregarDetalleForm.get('Hostname')?.errors"
+              >
+                {{ MensajeError("Hostname") }}
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+
+          
+          <mat-grid-tile [colspan]="2" [rowspan]="1">
+            <mat-form-field class="input_form" appearance="outline">
+              <mat-label>Sistema Operativo</mat-label>
+              <input matInput formControlName="SistemaOperativo" type="text" required />
+              <mat-error *ngIf="agregarDetalleForm.get('SistemaOperativo')?.errors">
+                {{ MensajeError("SistemaOperativo") }}
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field class="input_form" appearance="outline">
+              <mat-label>Versión SO</mat-label>
+              <input
+                matInput
+                formControlName="VersionSO"
+                type="text"
+                required
+              />
+              <mat-error
+                *ngIf="agregarDetalleForm.get('VersionSO')?.errors"
+              >
+                {{ MensajeError("VersionSO") }}
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+          
+          
+          <mat-grid-tile [colspan]="2" [rowspan]="1">
+            <mat-form-field class="input_form" appearance="outline">
+              <mat-label>Versión base de datos</mat-label>
+              <input matInput formControlName="VersionBD" type="text" required />
+              <mat-error *ngIf="agregarDetalleForm.get('VersionBD')?.errors">
+                {{ MensajeError("VersionBD") }}
+              </mat-error>
+            </mat-form-field>
+  
+            <mat-form-field class="input_form" appearance="outline">
+              <mat-label>Hostname</mat-label>
+              <input
+                matInput
+                formControlName="Hostname"
+                type="text"
+                required
+              />
+              <mat-error
+                *ngIf="agregarDetalleForm.get('Hostname')?.errors"
+              >
+                {{ MensajeError("Hostname") }}
+              </mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+  
+          <mat-grid-tile [colspan]="2" [rowspan]="1">
+            <mat-form-field appearance="outline" class="input_form">
+              <mat-label>Tipo</mat-label>
+              <mat-select formControlName="Tipo">
+                <mat-option *ngFor="let servidor of tipo_serv" [value]="servidor.value">
+                  {{ servidor.viewValue }}
+                </mat-option>
+              </mat-select>
+              <mat-error
+                *ngIf="agregarDetalleForm.get('Tipo')?.errors"
+              >
+                {{ MensajeError("Tipo") }}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="input_form">
+                <mat-label>Estatus</mat-label>
+                <mat-select formControlName="Estatus">
+                  <mat-option *ngFor="let estatus of estatusdisponible" [value]="estatus.value">
+                    {{ estatus.viewValue }}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="agregarDetalleForm.get('Estatus')?.errors"
+                >
+                  {{ MensajeError("Estatus") }}
+                </mat-error>
+              </mat-form-field>
+          </mat-grid-tile>
+  
+          <mat-grid-tile colspan="4" [rowspan]="1">
+            <button
+              type="submit"
+              class="button_login"
+              [disabled]="agregarDetalleForm.invalid"
+              mat-raised-button
+              color="primary"
+            >
+              Agregar
+            </button>
+            <button
+            mat-stroked-button
+            color="warn"
+            type="button"
+            (click)="limpiarForm()"
+          >
+            Limpiar
+          </button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </form>
+    </div>
+  </div>

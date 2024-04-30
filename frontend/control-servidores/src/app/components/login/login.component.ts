@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -10,23 +11,22 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent {
   form: FormGroup;
-  numemp: string;
   cargando: boolean = false;
   constructor(private formBuilder: FormBuilder, private loginService:LoginService, private router:Router){
     this.form = new FormGroup({
-      empleado: new FormControl ('', [Validators.required,Validators.minLength(8),Validators.pattern('^[0-9]+$')]),
-      password: new FormControl ('', [Validators.required,Validators.minLength(8)])
+      NoColaborador: new FormControl ('', [Validators.required,Validators.minLength(8),Validators.pattern('^[0-9]+$')]),
+      Contrasena: new FormControl ('', [Validators.required,Validators.minLength(8)])
     })
   }
   login(){
-    this.numemp=this.form.value.empleado;
-    if(this.loginService.login(this.numemp)){
-      this.falsoCargando();
-      
-    }else{
-      this.form.reset();
-    }
-    
+    this.loginService.login(this.form.value).subscribe({
+      next: (resp) => {
+        this.router.navigateByUrl('/inicio')
+      },
+      error: (err) => {
+        Swal.fire('Error', err.error.msg, 'error');
+      }
+    })
   }
   falsoCargando(){
     this.cargando=true;
@@ -37,15 +37,15 @@ export class LoginComponent {
   }
   MensajeError(){
     let error:string = "";
-    if(this.form.get('empleado')?.hasError('minlength')){
+    if(this.form.get('NoColaborador')?.hasError('minlength')){
       error = "La longitud mínima es 8"
     }
     
-    if(this.form.get('empleado')?.hasError('pattern')){
+    if(this.form.get('NoColaborador')?.hasError('pattern')){
       error = "Solo se aceptan números"
     }
     
-    if(this.form.get('empleado')?.hasError('required')){
+    if(this.form.get('NoColaborador')?.hasError('required')){
       error = "Campo requerido"
     }
 

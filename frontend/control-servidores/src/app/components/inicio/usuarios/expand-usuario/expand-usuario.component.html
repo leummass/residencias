@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="">
+      <form
+        [formGroup]="actualizarUsuarioForm"
+        (ngSubmit)="actualizarUsuario()"
+      >
+        <mat-grid-list cols="4" rowHeight="90px">
+  
+          <mat-grid-tile [colspan]="4" [rowspan]="1">
+              <mat-form-field class="input_form" appearance="outline">
+                <mat-label># Colaborador</mat-label>
+                <input matInput formControlName="NoColaborador" type="text" required [readonly]="true"/>
+                <mat-error *ngIf="actualizarUsuarioForm.get('NoColaborador')?.errors">
+                  {{ MensajeError("NoColaborador") }}
+                </mat-error>
+              </mat-form-field>
+
+  
+            <mat-form-field class="input_form" appearance="outline">
+              <mat-label>Contraseña</mat-label>
+              <input matInput formControlName="Contrasena" type="password" />
+              <mat-error *ngIf="actualizarUsuarioForm.get('Contrasena')?.errors">
+                {{ MensajeError("Contrasena") }}
+              </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="input_form" appearance="outline">
+                <mat-label>Tipo</mat-label>
+                <mat-select formControlName="Tipo">
+                  <mat-option *ngFor="let usuario of tipo_usuario" [value]="usuario.value">
+                    {{ usuario.viewValue }}
+                  </mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="actualizarUsuarioForm.get('Tipo')?.errors"
+                >
+                  {{ MensajeError("Tipo") }}
+                </mat-error>
+              </mat-form-field>
+              
+          </mat-grid-tile>
+  
+  
+          <mat-grid-tile colspan="4" [rowspan]="1">
+            <button
+              type="submit"
+              class="button_login"
+              [disabled]="actualizarUsuarioForm.invalid"
+              mat-raised-button
+              color="primary"
+            >
+              Actualizar
+            </button>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </form>
+    </div>
+  </div>
+  

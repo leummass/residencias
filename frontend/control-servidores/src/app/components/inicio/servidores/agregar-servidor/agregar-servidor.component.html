@@ -1,0 +1,69 @@
+<div class="container">
+  <mat-toolbar>
+    <span class="spacer">Agregar servidor</span>
+  </mat-toolbar>
+  <div class="form_anadir">
+    <form [formGroup]="guardarServidorForm" (ngSubmit)="guardarServidor()">
+      <mat-grid-list cols="4" rowHeight="90px">
+        <mat-grid-tile [colspan]="4" [rowspan]="1">
+          <mat-form-field class="input_form" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="Nombre" type="text" required />
+            <mat-error *ngIf="guardarServidorForm.get('Nombre')?.errors">
+              {{ MensajeError("Nombre") }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="input_form" appearance="outline">
+            <mat-label>Descripcion</mat-label>
+            <input
+              matInput
+              formControlName="Descripcion"
+              type="text"
+              required
+            />
+            <mat-error *ngIf="guardarServidorForm.get('Descripcion')?.errors">
+              {{ MensajeError("Descripcion") }}
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="input_form" appearance="outline">
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="Tipo" required>
+              <mat-option
+                *ngFor="let servidor of tipo_serv"
+                [value]="servidor.value"
+              >
+                {{ servidor.viewValue }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="guardarServidorForm.get('Tipo')?.errors">
+              {{ MensajeError("Tipo") }}
+            </mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile colspan="4" [rowspan]="1">
+          <button
+            type="submit"
+            class="button_login"
+            [disabled]="guardarServidorForm.invalid"
+            mat-raised-button
+            color="primary"
+          >
+            Agregar
+          </button>
+
+          <button
+            mat-stroked-button
+            color="warn"
+            type="button"
+            (click)="limpiarForm()"
+          >
+            Limpiar
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
+  </div>
+</div>

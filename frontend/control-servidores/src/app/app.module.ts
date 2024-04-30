@@ -10,12 +10,13 @@ import { LoginComponent } from './components/login/login.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { LoginService } from './services/login.service';
-import { DatosService } from './services/datos.service';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,7 +25,7 @@ import { DatosService } from './services/datos.service';
     HttpClientModule,
   ],
   providers: [
-    provideAnimationsAsync(), LoginService, DatosService
+    provideAnimationsAsync(), LoginService,
   ],
   bootstrap: [AppComponent]
 })
