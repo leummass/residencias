@@ -43,24 +43,26 @@ export class ServidoresComponent {
   constructor(public ventana: MatDialog, formBuilder: FormBuilder, private servidoresService: ServidoresService) {
     this.dataSource.filterPredicate = ((data, filter) => {
       const filters = JSON.parse(filter);
+      const a = !filters[0].fID || data.Id.toString().includes(filters[0].fID)
       const b =
-        !filters[0].fNombre ||
-        data.Nombre.toLowerCase().includes(filters[0].fNombre);
-      let c = !filters[1].fTipo;
-      if (filters[1].fTipo != '') {
-        c = !filters[1].fTipo || data.Tipo === filters[1].fTipo;
+        !filters[1].fNombre ||
+        data.Nombre.toLowerCase().includes(filters[1].fNombre);
+      let c = !filters[2].fTipo;
+      if (filters[2].fTipo != '') {
+        c = !filters[2].fTipo || data.Tipo === filters[2].fTipo;
       }
-      return b && c;
+      return a && b && c;
     }) as (Catalogo_Servidor: Catalogo_Servidor, string: string) => boolean;
 
     this.form = formBuilder.group({
       fNombre: '',
-      fIP: '',
+      fID: '',
       fTipo: '',
     });
     this.form.valueChanges.subscribe(
-      (value: { fNombre: any; fTipo: any }) => {
+      (value: { fNombre: any; fTipo: any; fID: any }) => {
         const filter = [
+          { fID: value.fID},
           { fNombre: value.fNombre },
           { fTipo: value.fTipo },
         ];
@@ -94,7 +96,6 @@ export class ServidoresComponent {
     });
 
     dialogRef.afterClosed().subscribe((result:any) => {
-      console.log(result);
       this.obtenerServidores();
     });
   }

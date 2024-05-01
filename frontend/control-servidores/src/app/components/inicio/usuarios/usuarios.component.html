@@ -2,7 +2,27 @@
     <mat-toolbar>
       <span class="spacer">Catálogo de servicios</span>
     </mat-toolbar>
-    
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Filtros </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-panel-description>
+        <form [formGroup]="form">
+          <mat-form-field class="filtro" appearance="outline">
+            <mat-label>ID</mat-label>
+            <input matInput formControlName="fNoColaborador" />
+          </mat-form-field>
+          <mat-form-field class="filtro" appearance="outline">
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="fTipo">
+              <mat-option *ngFor="let usuario of tipo_usuario" [value]="usuario.value">
+                {{ usuario.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </mat-panel-description>
+    </mat-expansion-panel>
   
     <div class="contenedor_tabla mat-elevation-z8">
       <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="tabla">

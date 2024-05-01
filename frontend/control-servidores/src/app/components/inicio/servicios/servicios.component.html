@@ -2,10 +2,31 @@
   <mat-toolbar>
     <span class="spacer">Catálogo de servicios</span>
   </mat-toolbar>
-  <mat-form-field class="filtro">
-    <mat-label>Filtro</mat-label>
-    <input matInput (keyup)="filtrar($event)" #input />
-  </mat-form-field>
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title> Filtros </mat-panel-title>
+    </mat-expansion-panel-header>
+    <mat-panel-description>
+      <form [formGroup]="form">
+        <mat-form-field class="filtro" appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="fNombre" />
+        </mat-form-field>
+        <mat-form-field class="filtro" appearance="outline">
+          <mat-label>URL</mat-label>
+          <input matInput formControlName="fUrl" />
+        </mat-form-field>
+        <mat-form-field class="filtro" appearance="outline">
+          <mat-label>IP</mat-label>
+          <input matInput formControlName="fIp" />
+        </mat-form-field>
+        <mat-form-field class="filtro" appearance="outline">
+          <mat-label>DNSs</mat-label>
+          <input matInput formControlName="fDns" />
+        </mat-form-field>
+      </form>
+    </mat-panel-description>
+  </mat-expansion-panel>
 
   <div class="contenedor_tabla mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="tabla">

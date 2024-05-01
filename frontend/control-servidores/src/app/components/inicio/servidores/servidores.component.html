@@ -8,11 +8,15 @@
     </mat-expansion-panel-header>
     <mat-panel-description>
       <form [formGroup]="form">
-        <mat-form-field class="filtro">
+        <mat-form-field class="filtro" appearance="outline">
+          <mat-label>ID</mat-label>
+          <input matInput formControlName="fID" />
+        </mat-form-field>
+        <mat-form-field class="filtro" appearance="outline">
           <mat-label>Nombre</mat-label>
           <input matInput formControlName="fNombre" />
         </mat-form-field>
-        <mat-form-field class="filtro">
+        <mat-form-field class="filtro" appearance="outline">
           <mat-label>Tipo</mat-label>
           <mat-select formControlName="fTipo">
             <mat-option

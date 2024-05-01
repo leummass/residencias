@@ -14,7 +14,7 @@
   margin-left: 4%;
   margin-top: 0%;
   padding-top: 1%;
-  width: 30%;
+  width: 25%;
 }
 mat-toolbar {
   width: 100%;
@@ -24,6 +24,14 @@ mat-expansion-panel {
   margin: auto;
   margin-bottom: 0.5%;
 }
+mat-panel-description{
+  width: 100%;
+}
+form {
+  width: 100%;
+}
+
+
 .botones {
   margin-top: 1%;
   width: 95%;

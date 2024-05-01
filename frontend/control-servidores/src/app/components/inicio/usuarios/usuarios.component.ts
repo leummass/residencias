@@ -7,6 +7,7 @@ import { UsuariosService } from '../../../services/usuarios.service';
 import { MatDialog } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { AgregarUsuarioComponent } from './agregar-usuario/agregar-usuario.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-usuarios',
@@ -26,7 +27,17 @@ export class UsuariosComponent {
     'Tipo',
   ]
 
+  tipo_usuario: any[] = [
+    { value: 'Desarrollador', viewValue: 'Desarrollador' },
+    { value: 'Tester', viewValue: 'Tester' },
+    { value: 'Arquitecto', viewValue: 'Arquitecto' },
+    { value: 'Lider', viewValue: 'Lider' },
+    { value: 'Gerente', viewValue: 'Gerente' },
+  ];
+
   Catalogo_Usuarios: Usuario[];
+
+  form: FormGroup;
 
   dataSource = new MatTableDataSource<Usuario>();
 
@@ -34,7 +45,31 @@ export class UsuariosComponent {
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(public ventana: MatDialog, private usuariosService: UsuariosService){}
+  constructor(public ventana: MatDialog, private usuariosService: UsuariosService, formBuilder: FormBuilder){
+    this.dataSource.filterPredicate = ((data, filter) => {
+      const filters = JSON.parse(filter);
+      const a = !filters[0].fNoColaborador || data.NoColaborador.toString().includes(filters[0].fNoColaborador)
+      let b = !filters[1].fTipo;
+      if (filters[1].fTipo != '') {
+        b = !filters[1].fTipo || data.Tipo === filters[1].fTipo;
+      }
+      return a && b;
+    }) as (Usuarios: Usuario, string: string) => boolean;
+
+    this.form = formBuilder.group({
+      fNoColaborador: '',
+      fTipo: '',
+    });
+    this.form.valueChanges.subscribe(
+      (value: { fNoColaborador: any; fTipo: any; }) => {
+        const filter = [
+          { fNoColaborador: value.fNoColaborador},
+          { fTipo: value.fTipo },
+        ];
+        this.dataSource.filter = JSON.stringify(filter);
+      }
+    );
+  }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;

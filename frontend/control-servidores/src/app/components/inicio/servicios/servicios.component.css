@@ -8,21 +8,38 @@
 }
 .row_buttons {
   width: 100%;
-  padding-top: 1%;
+  padding-top: 0%;
 }
 .filtro {
-  margin-left: 5%;
+  margin-left: 4%;
   margin-top: 0%;
   padding-top: 1%;
+  width: 25%;
 }
+mat-toolbar {
+  width: 100%;
+}
+mat-expansion-panel {
+  width: 90%;
+  margin: auto;
+  margin-bottom: 0.5%;
+}
+mat-panel-description{
+  width: 100%;
+}
+form {
+  width: 100%;
+}
+
+
 .botones {
   margin-top: 1%;
   width: 95%;
   display: flex;
 }
-
-table {
-  width: 100%;
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
 }
 
 tr.example-detail-row {
@@ -54,13 +71,6 @@ tr.example-element-row:not(.example-expanded-row):active {
   margin: 8px 0;
   height: 104px;
 }
-
-.example-element-symbol {
-  font-weight: bold;
-  font-size: 40px;
-  line-height: normal;
-}
-
 .example-element-description {
   padding: 16px;
 }
