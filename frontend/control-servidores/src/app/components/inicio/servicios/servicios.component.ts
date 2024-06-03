@@ -120,12 +120,4 @@ export class ServiciosComponent {
       this.obtenerServicios();
     });
   }
-  // abrirVentanaAgregar(){
-  //   const dialogRef = this.ventana.open(ServiciosAnadirComponent, {
-  //     width: '70%',
-  //     enterAnimationDuration: '300ms',
-  //     exitAnimationDuration: '300ms',
-  //     data: {name: 'XD'},
-  //   });
-  // }
 }
